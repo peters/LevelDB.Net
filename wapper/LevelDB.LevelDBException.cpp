@@ -6,6 +6,6 @@ using namespace System;
 using namespace msclr::interop;
 
 LevelDBException::LevelDBException(leveldb::Status &status)
-	:DbException(marshal_context().marshal_as<String^>(status.ToString()))
+	:DbException(marshal_as<String^>(status.ToString()))
 {
 }
