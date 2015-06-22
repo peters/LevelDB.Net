@@ -119,6 +119,8 @@
     <ClCompile Include="util\options.cc" />
     <ClCompile Include="util\status.cc" />
     <ClCompile Include="util\win_logger.cc" />
+    <ClCompile Include="wapper\LevelDB.DB.cpp" />
+    <ClCompile Include="wapper\LevelDB.LevelDBException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="db\builder.h" />
@@ -175,6 +177,11 @@
     <ClInclude Include="util\posix_logger.h" />
     <ClInclude Include="util\random.h" />
     <ClInclude Include="util\win_logger.h" />
+    <ClInclude Include="wapper\LevelDB.DB.h" />
+    <ClInclude Include="wapper\LevelDB.LevelDBException.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -138,6 +138,12 @@
     <ClCompile Include="util\env_windows.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wapper\LevelDB.DB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.LevelDBException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="db\builder.h">
@@ -300,6 +306,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util\win_logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.DB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.LevelDBException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
