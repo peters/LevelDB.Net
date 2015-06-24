@@ -84,7 +84,6 @@
     <ClCompile Include="db\db_iter.cc" />
     <ClCompile Include="db\dumpfile.cc" />
     <ClCompile Include="db\filename.cc" />
-    <ClCompile Include="db\leveldb_main.cc" />
     <ClCompile Include="db\log_reader.cc" />
     <ClCompile Include="db\log_writer.cc" />
     <ClCompile Include="db\memtable.cc" />
@@ -120,8 +119,12 @@
     <ClCompile Include="util\status.cc" />
     <ClCompile Include="util\win_logger.cc" />
     <ClCompile Include="wapper\LevelDB.DB.cpp" />
+    <ClCompile Include="wapper\LevelDB.Iterator.cpp" />
     <ClCompile Include="wapper\LevelDB.LevelDBException.cpp" />
+    <ClCompile Include="wapper\LevelDB.ReadOptions.cpp" />
+    <ClCompile Include="wapper\LevelDB.Snapshot.cpp" />
     <ClCompile Include="wapper\LevelDB.WriteBatch.cpp" />
+    <ClCompile Include="wapper\LevelDB.WriteOptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="db\builder.h" />
@@ -179,8 +182,12 @@
     <ClInclude Include="util\random.h" />
     <ClInclude Include="util\win_logger.h" />
     <ClInclude Include="wapper\LevelDB.DB.h" />
+    <ClInclude Include="wapper\LevelDB.Iterator.h" />
     <ClInclude Include="wapper\LevelDB.LevelDBException.h" />
+    <ClInclude Include="wapper\LevelDB.ReadOptions.h" />
+    <ClInclude Include="wapper\LevelDB.Snapshot.h" />
     <ClInclude Include="wapper\LevelDB.WriteBatch.h" />
+    <ClInclude Include="wapper\LevelDB.WriteOptions.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data" />

@@ -33,9 +33,6 @@
     <ClCompile Include="db\filename.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="db\leveldb_main.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="db\log_reader.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -145,6 +142,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wapper\LevelDB.WriteBatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.Iterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.Snapshot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.ReadOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.WriteOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -318,6 +327,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wapper\LevelDB.WriteBatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.Iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.Snapshot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.ReadOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.WriteOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
