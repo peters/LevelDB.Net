@@ -119,6 +119,13 @@ void DB::Put(String^ key, String^ value)
 	PutInternal(k, v);
 }
 
+void DB::Write(WriteBatch^ updates)
+{
+	leveldb::Status status = db_inner->Write(leveldb::WriteOptions(), updates->write_batch);
+	if (!status.ok())
+		throw gcnew LevelDBException(status);
+}
+
 void DB::DeleteInternal(leveldb::Slice& key)
 {
 	leveldb::Status status = db_inner->Delete(leveldb::WriteOptions(), key);

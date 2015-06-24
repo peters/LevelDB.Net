@@ -1,6 +1,7 @@
 #pragma once
 
 #include "leveldb\db.h"
+#include "LevelDB.WriteBatch.h"
 
 namespace LevelDB
 {
@@ -23,6 +24,7 @@ namespace LevelDB
 		void Put(array<System::Byte>^ key, System::String^ value);
 		void Put(System::String^ key, array<System::Byte>^ value);
 		void Put(System::String^ key, System::String^ value);
+		void Write(WriteBatch^ write_batch);
 	private:
 		void DeleteInternal(leveldb::Slice& key);
 		std::string GetInternal(leveldb::Slice& key);

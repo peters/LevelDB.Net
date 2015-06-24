@@ -121,6 +121,7 @@
     <ClCompile Include="util\win_logger.cc" />
     <ClCompile Include="wapper\LevelDB.DB.cpp" />
     <ClCompile Include="wapper\LevelDB.LevelDBException.cpp" />
+    <ClCompile Include="wapper\LevelDB.WriteBatch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="db\builder.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="util\win_logger.h" />
     <ClInclude Include="wapper\LevelDB.DB.h" />
     <ClInclude Include="wapper\LevelDB.LevelDBException.h" />
+    <ClInclude Include="wapper\LevelDB.WriteBatch.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data" />
