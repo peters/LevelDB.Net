@@ -71,7 +71,6 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -122,6 +121,7 @@
     <ClCompile Include="wapper\LevelDB.Iterator.cpp" />
     <ClCompile Include="wapper\LevelDB.LevelDBException.cpp" />
     <ClCompile Include="wapper\LevelDB.ReadOptions.cpp" />
+    <ClCompile Include="wapper\LevelDB.Slice.cpp" />
     <ClCompile Include="wapper\LevelDB.Snapshot.cpp" />
     <ClCompile Include="wapper\LevelDB.WriteBatch.cpp" />
     <ClCompile Include="wapper\LevelDB.WriteOptions.cpp" />
@@ -185,6 +185,7 @@
     <ClInclude Include="wapper\LevelDB.Iterator.h" />
     <ClInclude Include="wapper\LevelDB.LevelDBException.h" />
     <ClInclude Include="wapper\LevelDB.ReadOptions.h" />
+    <ClInclude Include="wapper\LevelDB.Slice.h" />
     <ClInclude Include="wapper\LevelDB.Snapshot.h" />
     <ClInclude Include="wapper\LevelDB.WriteBatch.h" />
     <ClInclude Include="wapper\LevelDB.WriteOptions.h" />

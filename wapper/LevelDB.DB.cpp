@@ -20,61 +20,29 @@ DB::~DB(void)
 	}
 }
 
-void DB::Delete(WriteOptions^ options, array<byte>^ key)
+void DB::Delete(WriteOptions^ options, Slice key)
 {
-	pin_ptr<byte> ptr_k = &key[0];
-	leveldb::Slice k((char*)ptr_k, key->Length);
-	DeleteInternal(options, k);
+	pin_ptr<byte> ptr_k = &key.buffer[0];
+	leveldb::Slice k((char*)ptr_k, key.buffer->Length);
+	leveldb::Status status = db_inner->Delete(options->ToUnmanaged(), k);
+	if (!status.ok())
+		throw gcnew LevelDBException(status);
 }
 
-void DB::Delete(WriteOptions^ options, String^ key)
+Slice DB::Get(ReadOptions^ options, Slice key)
 {
-	marshal_context context;
-	leveldb::Slice k(context.marshal_as<const char*>(key));
-	DeleteInternal(options, k);
-}
-
-array<byte>^ DB::Get(ReadOptions^ options, array<byte>^ key)
-{
-	pin_ptr<byte> ptr_k = &key[0];
-	leveldb::Slice k((char*)ptr_k, key->Length);
-	std::string value = GetInternal(options, k);
-	array<byte>^ result = gcnew array<byte>((int)value.length());
-	pin_ptr<byte> ptr_r = &result[0];
-	memcpy_s(ptr_r, result->Length, value.c_str(), result->Length);
-	return result;
-}
-
-array<byte>^ DB::Get(ReadOptions^ options, String^ key)
-{
-	marshal_context context;
-	leveldb::Slice k(context.marshal_as<const char*>(key));
-	std::string value = GetInternal(options, k);
-	array<byte>^ result = gcnew array<byte>((int)value.length());
-	pin_ptr<byte> ptr_r = &result[0];
-	memcpy_s(ptr_r, result->Length, value.c_str(), result->Length);
-	return result;
+	std::string value;
+	pin_ptr<byte> ptr_k = &key.buffer[0];
+	leveldb::Slice k((char*)ptr_k, key.buffer->Length);
+	leveldb::Status status = db_inner->Get(options->ToUnmanaged(), k, &value);
+	if (!status.ok())
+		throw gcnew LevelDBException(status);
+	return Slice(value);
 }
 
 Snapshot^ DB::GetSnapshot()
 {
 	return gcnew Snapshot(db_inner);
-}
-
-String^ DB::GetString(ReadOptions^ options, array<byte>^ key)
-{
-	pin_ptr<byte> ptr_k = &key[0];
-	leveldb::Slice k((char*)ptr_k, key->Length);
-	std::string value = GetInternal(options, k);
-	return marshal_as<String^>(value);
-}
-
-String^ DB::GetString(ReadOptions^ options, String^ key)
-{
-	marshal_context context;
-	leveldb::Slice k(context.marshal_as<const char*>(key));
-	std::string value = GetInternal(options, k);
-	return marshal_as<String^>(value);
 }
 
 Iterator^ DB::NewIterator(ReadOptions^ options)
@@ -93,67 +61,20 @@ DB^ DB::Open(String^ name)
 	return gcnew DB(db_inner);
 }
 
-void DB::Put(WriteOptions^ options, array<byte>^ key, array<byte>^ value)
+void DB::Put(WriteOptions^ options, Slice key, Slice value)
 {
-	pin_ptr<byte> ptr_k = &key[0];
-	pin_ptr<byte> ptr_v = &value[0];
-	leveldb::Slice k((char*)ptr_k, key->Length);
-	leveldb::Slice v((char*)ptr_v, value->Length);
-	PutInternal(options, k, v);
-}
-
-void DB::Put(WriteOptions^ options, array<byte>^ key, String^ value)
-{
-	marshal_context context;
-	pin_ptr<byte> ptr_k = &key[0];
-	leveldb::Slice k((char*)ptr_k, key->Length);
-	leveldb::Slice v(context.marshal_as<const char*>(value));
-	PutInternal(options, k, v);
-}
-
-void DB::Put(WriteOptions^ options, String^ key, array<byte>^ value)
-{
-	marshal_context context;
-	pin_ptr<byte> ptr_v = &value[0];
-	leveldb::Slice k(context.marshal_as<const char*>(key));
-	leveldb::Slice v((char*)ptr_v, value->Length);
-	PutInternal(options, k, v);
-}
-
-void DB::Put(WriteOptions^ options, String^ key, String^ value)
-{
-	marshal_context context;
-	leveldb::Slice k(context.marshal_as<const char*>(key));
-	leveldb::Slice v(context.marshal_as<const char*>(value));
-	PutInternal(options, k, v);
+	pin_ptr<byte> ptr_k = &key.buffer[0];
+	pin_ptr<byte> ptr_v = &value.buffer[0];
+	leveldb::Slice k((char*)ptr_k, key.buffer->Length);
+	leveldb::Slice v((char*)ptr_v, value.buffer->Length);
+	leveldb::Status status = db_inner->Put(options->ToUnmanaged(), k, v);
+	if (!status.ok())
+		throw gcnew LevelDBException(status);
 }
 
 void DB::Write(WriteOptions^ options, WriteBatch^ updates)
 {
 	leveldb::Status status = db_inner->Write(options->ToUnmanaged(), updates->write_batch);
-	if (!status.ok())
-		throw gcnew LevelDBException(status);
-}
-
-void DB::DeleteInternal(WriteOptions^ options, leveldb::Slice& key)
-{
-	leveldb::Status status = db_inner->Delete(options->ToUnmanaged(), key);
-	if (!status.ok())
-		throw gcnew LevelDBException(status);
-}
-
-std::string DB::GetInternal(ReadOptions^ options, leveldb::Slice& key)
-{
-	std::string value;
-	leveldb::Status status = db_inner->Get(options->ToUnmanaged(), key, &value);
-	if (!status.ok())
-		throw gcnew LevelDBException(status);
-	return value;
-}
-
-void DB::PutInternal(WriteOptions^ options, leveldb::Slice& key, leveldb::Slice& value)
-{
-	leveldb::Status status = db_inner->Put(options->ToUnmanaged(), key, value);
 	if (!status.ok())
 		throw gcnew LevelDBException(status);
 }

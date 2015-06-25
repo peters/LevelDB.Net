@@ -14,6 +14,6 @@ leveldb::ReadOptions ReadOptions::ToUnmanaged()
 	leveldb::ReadOptions options;
 	options.verify_checksums = VerifyChecksums;
 	options.fill_cache = FillCache;
-	options.snapshot = Snapshot->snapshot;
+	options.snapshot = Snapshot == nullptr ? nullptr : Snapshot->snapshot;
 	return options;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "leveldb/iterator.h"
+#include "LevelDB.Slice.h"
 
 namespace LevelDB
 {
@@ -13,16 +14,13 @@ namespace LevelDB
 		~Iterator(void);
 		!Iterator(void);
 	public:
-		array<System::Byte>^ Key();
-		System::String^ KeyAsString();
+		Slice Key();
 		void Next();
 		void Prev();
-		void Seek(array<System::Byte>^ target);
-		void Seek(System::String^ target);
+		void Seek(Slice target);
 		void SeekToFirst();
 		void SeekToLast();
 		bool Valid();
-		array<System::Byte>^ Value();
-		System::String^ ValueAsString();
+		Slice Value();
 	};
 }

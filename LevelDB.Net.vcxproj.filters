@@ -156,6 +156,9 @@
     <ClCompile Include="wapper\LevelDB.WriteOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wapper\LevelDB.Slice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="db\builder.h">
@@ -339,6 +342,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wapper\LevelDB.WriteOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.Slice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
