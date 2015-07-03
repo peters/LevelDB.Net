@@ -22,6 +22,7 @@ namespace LevelDB
 		Iterator^ NewIterator(ReadOptions^ options);
 		static DB^ Open(System::String^ name);
 		void Put(WriteOptions^ options, Slice key, Slice value);
+		bool TryGet(ReadOptions^ options, Slice key, [System::Runtime::InteropServices::Out] Slice% value);
 		void Write(WriteOptions^ options, WriteBatch^ write_batch);
 	};
 }

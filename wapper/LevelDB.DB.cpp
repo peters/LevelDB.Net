@@ -72,6 +72,18 @@ void DB::Put(WriteOptions^ options, Slice key, Slice value)
 		throw gcnew LevelDBException(status);
 }
 
+bool DB::TryGet(ReadOptions^ options, Slice key, Slice% value)
+{
+	std::string value_i;
+	pin_ptr<byte> ptr_k = &key.buffer[0];
+	leveldb::Slice k((char*)ptr_k, key.buffer->Length);
+	leveldb::Status status = db_inner->Get(options->ToUnmanaged(), k, &value_i);
+	if (!status.ok())
+		return false;
+	value = Slice(value_i);
+	return true;
+}
+
 void DB::Write(WriteOptions^ options, WriteBatch^ updates)
 {
 	leveldb::Status status = db_inner->Write(options->ToUnmanaged(), updates->write_batch);
