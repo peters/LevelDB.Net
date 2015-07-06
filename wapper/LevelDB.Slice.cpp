@@ -54,9 +54,54 @@ array<byte>^ Slice::ToArray()
 	return buffer;
 }
 
+bool Slice::ToBoolean()
+{
+	return BitConverter::ToBoolean(buffer, 0);
+}
+
+double Slice::ToDouble()
+{
+	return BitConverter::ToDouble(buffer, 0);
+}
+
+short Slice::ToInt16()
+{
+	return BitConverter::ToInt16(buffer, 0);
+}
+
+int Slice::ToInt32()
+{
+	return BitConverter::ToInt32(buffer, 0);
+}
+
+long long Slice::ToInt64()
+{
+	return BitConverter::ToInt64(buffer, 0);
+}
+
+float Slice::ToSingle()
+{
+	return BitConverter::ToSingle(buffer, 0);
+}
+
 String^ Slice::ToString()
 {
 	return Encoding::UTF8->GetString(buffer);
+}
+
+unsigned short Slice::ToUInt16()
+{
+	return BitConverter::ToUInt16(buffer, 0);
+}
+
+unsigned int Slice::ToUInt32()
+{
+	return BitConverter::ToUInt32(buffer, 0);
+}
+
+unsigned long long Slice::ToUInt64()
+{
+	return BitConverter::ToUInt64(buffer, 0);
 }
 
 Slice::operator Slice(array<byte>^ data)
@@ -66,10 +111,73 @@ Slice::operator Slice(array<byte>^ data)
 	return s;
 }
 
+Slice::operator Slice(bool data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(double data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(short data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(int data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(long long data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(float data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
 Slice::operator Slice(String^ data)
 {
 	Slice s;
 	s.buffer = Encoding::UTF8->GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(unsigned short data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(unsigned int data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(unsigned long long data)
+{
+	Slice s;
+	s.buffer = BitConverter::GetBytes(data);
 	return s;
 }
 
