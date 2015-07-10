@@ -56,31 +56,50 @@ array<byte>^ Slice::ToArray()
 
 bool Slice::ToBoolean()
 {
+	if (buffer->Length != sizeof(bool))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToBoolean(buffer, 0);
+}
+
+byte Slice::ToByte()
+{
+	if (buffer->Length != sizeof(byte))
+		throw gcnew InvalidCastException();
+	return buffer[0];
 }
 
 double Slice::ToDouble()
 {
+	if (buffer->Length != sizeof(double))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToDouble(buffer, 0);
 }
 
 short Slice::ToInt16()
 {
+	if (buffer->Length != sizeof(short))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToInt16(buffer, 0);
 }
 
 int Slice::ToInt32()
 {
+	if (buffer->Length != sizeof(int))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToInt32(buffer, 0);
 }
 
 long long Slice::ToInt64()
 {
+	if (buffer->Length != sizeof(long long))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToInt64(buffer, 0);
 }
 
 float Slice::ToSingle()
 {
+	if (buffer->Length != sizeof(float))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToSingle(buffer, 0);
 }
 
@@ -91,16 +110,22 @@ String^ Slice::ToString()
 
 unsigned short Slice::ToUInt16()
 {
+	if (buffer->Length != sizeof(unsigned short))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToUInt16(buffer, 0);
 }
 
 unsigned int Slice::ToUInt32()
 {
+	if (buffer->Length != sizeof(unsigned int))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToUInt32(buffer, 0);
 }
 
 unsigned long long Slice::ToUInt64()
 {
+	if (buffer->Length != sizeof(unsigned long long))
+		throw gcnew InvalidCastException();
 	return BitConverter::ToUInt64(buffer, 0);
 }
 
@@ -115,6 +140,13 @@ Slice::operator Slice(bool data)
 {
 	Slice s;
 	s.buffer = BitConverter::GetBytes(data);
+	return s;
+}
+
+Slice::operator Slice(byte data)
+{
+	Slice s;
+	s.buffer = gcnew array < byte > { data };
 	return s;
 }
 

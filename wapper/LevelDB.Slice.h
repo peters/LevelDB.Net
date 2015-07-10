@@ -21,6 +21,7 @@ namespace LevelDB
 		virtual int GetHashCode() override;
 		array<byte>^ ToArray();
 		bool ToBoolean();
+		byte ToByte();
 		double ToDouble();
 		short ToInt16();
 		int ToInt32();
@@ -33,6 +34,7 @@ namespace LevelDB
 	public:
 		static operator Slice(array<byte>^ data);
 		static operator Slice(bool data);
+		static operator Slice(byte data);
 		static operator Slice(double data);
 		static operator Slice(short data);
 		static operator Slice(int data);
