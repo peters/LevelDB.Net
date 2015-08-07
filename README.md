@@ -2,6 +2,12 @@
 
 Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
 
+**LevelDB.Net is a C++/CLI version of leveldb, which makes it work well on Windows and .Net.**
+
+Authors: Erik Zhang (erik@vcage.com)
+
+NuGet: https://www.nuget.org/packages/LevelDB.Net/
+
 # Features
   * Keys and values are arbitrary byte arrays.
   * Data is stored sorted by key.
@@ -12,7 +18,6 @@ Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
   * Forward and backward iteration is supported over the data.
   * Data is automatically compressed using the [Snappy compression library](http://code.google.com/p/snappy).
   * External activity (file system operations etc.) is relayed through a virtual interface so users can customize the operating system interactions.
-  * [Detailed documentation](http://htmlpreview.github.io/?https://github.com/google/leveldb/blob/master/doc/index.html) about how to use the library is included with the source code.
 
 
 # Limitations
@@ -97,42 +102,3 @@ uncompressed blocks in memory, the read performance improves again:
 
     readrandom   :       9.775 micros/op;  (approximately 100,000 reads per second before compaction)
     readrandom   :       5.215 micros/op;  (approximately 190,000 reads per second after compaction)
-
-## Repository contents
-
-See doc/index.html for more explanation. See doc/impl.html for a brief overview of the implementation.
-
-The public interface is in include/*.h.  Callers should not include or
-rely on the details of any other header files in this package.  Those
-internal APIs may be changed without warning.
-
-Guide to header files:
-
-* **include/db.h**: Main interface to the DB: Start here
-
-* **include/options.h**: Control over the behavior of an entire database,
-and also control over the behavior of individual reads and writes.
-
-* **include/comparator.h**: Abstraction for user-specified comparison function. 
-If you want just bytewise comparison of keys, you can use the default
-comparator, but clients can write their own comparator implementations if they
-want custom ordering (e.g. to handle different character encodings, etc.)
-
-* **include/iterator.h**: Interface for iterating over data. You can get
-an iterator from a DB object.
-
-* **include/write_batch.h**: Interface for atomically applying multiple
-updates to a database.
-
-* **include/slice.h**: A simple module for maintaining a pointer and a
-length into some other byte array.
-
-* **include/status.h**: Status is returned from many of the public interfaces
-and is used to report success and various kinds of errors.
-
-* **include/env.h**: 
-Abstraction of the OS environment.  A posix implementation of this interface is
-in util/env_posix.cc
-
-* **include/table.h, include/table_builder.h**: Lower-level modules that most
-clients probably won't use directly
