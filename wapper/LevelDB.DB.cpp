@@ -13,10 +13,15 @@ DB::DB(leveldb::DB* db_inner)
 
 DB::~DB(void)
 {
-	if (db_inner != NULL)
+	this->!DB();
+}
+
+DB::!DB(void)
+{
+	if (db_inner != nullptr)
 	{
 		delete db_inner;
-		db_inner = NULL;
+		db_inner = nullptr;
 	}
 }
 

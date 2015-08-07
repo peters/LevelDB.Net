@@ -159,6 +159,15 @@
     <ClCompile Include="wapper\LevelDB.Slice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wapper\LevelDB.Options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.FilterPolicy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wapper\LevelDB.BloomFilterPolicy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="db\builder.h">
@@ -345,6 +354,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wapper\LevelDB.Slice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.CompressionType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.FilterPolicy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wapper\LevelDB.BloomFilterPolicy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

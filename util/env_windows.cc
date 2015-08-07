@@ -12,6 +12,7 @@
 #include "port/port.h"
 #include "util/logging.h"
 #include <filesystem>
+#include <fstream>
 
 namespace leveldb {
 namespace {
@@ -247,7 +248,7 @@ class PosixEnv : public Env {
   }
 
   virtual bool FileExists(const std::string& fname) {
-	return std::tr2::sys::exists<std::tr2::sys::path>(fname);
+	return std::tr2::sys::exists(fname);
   }
 
   virtual Status GetChildren(const std::string& dir,
@@ -263,14 +264,14 @@ class PosixEnv : public Env {
 	std::tr2::sys::directory_iterator end;
 
     for(; current != end; ++current) {
-      result->push_back(current->path().filename());
+      result->push_back(current->path().filename().generic_string());
     }
 
     return Status::OK();
   }
 
   virtual Status DeleteFile(const std::string& fname) {
-	std::tr2::sys::remove<std::tr2::sys::path>(fname);
+	std::tr2::sys::remove(fname);
 	return Status::OK();
   }
 
@@ -279,7 +280,7 @@ class PosixEnv : public Env {
 
 	  try
 	  {
-		  std::tr2::sys::create_directories<std::tr2::sys::path>(name);
+		  std::tr2::sys::create_directories(name);
 	  }
 	  catch (std::tr2::sys::filesystem_error ex)
 	  {
@@ -290,17 +291,21 @@ class PosixEnv : public Env {
     }
 
   virtual Status DeleteDir(const std::string& name) {
-	std::tr2::sys::remove_all<std::tr2::sys::path>(name);
+	std::tr2::sys::remove_all(name);
 	return Status::OK();
   }
 
   virtual Status GetFileSize(const std::string& fname, uint64_t* size) {
-	*size = std::tr2::sys::file_size<std::tr2::sys::path>(fname);
+	*size = std::tr2::sys::file_size(fname);
 	return Status::OK();
   }
 
   virtual Status RenameFile(const std::string& src, const std::string& target) {
-    std::tr2::sys::rename<std::tr2::sys::path, std::tr2::sys::path>(src, target);
+	std::error_code ec;
+    std::tr2::sys::rename(src, target, ec);
+	if (ec) {
+		return Status::IOError(src, ec.message());
+	}
 	return Status::OK();
   }
 
@@ -310,11 +315,11 @@ class PosixEnv : public Env {
     Status result;
 
     try {
-		if (!std::tr2::sys::exists<std::tr2::sys::path>(fname)) {
+		if (!std::tr2::sys::exists(fname)) {
         std::ofstream of(fname, std::ios_base::trunc | std::ios_base::out);
       }
 
-	  assert(std::tr2::sys::exists<std::tr2::sys::path>(fname));
+	  assert(std::tr2::sys::exists(fname));
 
 	  BoostFileLock * my_lock = new BoostFileLock(fname);
       *lock = my_lock;

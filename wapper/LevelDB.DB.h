@@ -15,6 +15,7 @@ namespace LevelDB
 	private:
 		DB(leveldb::DB* db_inner);
 		~DB(void);
+		!DB(void);
 	public:
 		void Delete(WriteOptions^ options, Slice key);
 		Slice Get(ReadOptions^ options, Slice key);

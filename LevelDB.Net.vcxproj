@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -18,13 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -50,7 +50,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LEVELDB_EXPORTS;LEVELDB_PLATFORM_WINDOWS;OS_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -64,7 +63,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LEVELDB_EXPORTS;LEVELDB_PLATFORM_WINDOWS;OS_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -117,9 +115,12 @@
     <ClCompile Include="util\options.cc" />
     <ClCompile Include="util\status.cc" />
     <ClCompile Include="util\win_logger.cc" />
+    <ClCompile Include="wapper\LevelDB.BloomFilterPolicy.cpp" />
     <ClCompile Include="wapper\LevelDB.DB.cpp" />
+    <ClCompile Include="wapper\LevelDB.FilterPolicy.cpp" />
     <ClCompile Include="wapper\LevelDB.Iterator.cpp" />
     <ClCompile Include="wapper\LevelDB.LevelDBException.cpp" />
+    <ClCompile Include="wapper\LevelDB.Options.cpp" />
     <ClCompile Include="wapper\LevelDB.ReadOptions.cpp" />
     <ClCompile Include="wapper\LevelDB.Slice.cpp" />
     <ClCompile Include="wapper\LevelDB.Snapshot.cpp" />
@@ -181,9 +182,13 @@
     <ClInclude Include="util\posix_logger.h" />
     <ClInclude Include="util\random.h" />
     <ClInclude Include="util\win_logger.h" />
+    <ClInclude Include="wapper\LevelDB.BloomFilterPolicy.h" />
+    <ClInclude Include="wapper\LevelDB.CompressionType.h" />
     <ClInclude Include="wapper\LevelDB.DB.h" />
+    <ClInclude Include="wapper\LevelDB.FilterPolicy.h" />
     <ClInclude Include="wapper\LevelDB.Iterator.h" />
     <ClInclude Include="wapper\LevelDB.LevelDBException.h" />
+    <ClInclude Include="wapper\LevelDB.Options.h" />
     <ClInclude Include="wapper\LevelDB.ReadOptions.h" />
     <ClInclude Include="wapper\LevelDB.Slice.h" />
     <ClInclude Include="wapper\LevelDB.Snapshot.h" />

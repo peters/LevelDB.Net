@@ -10,10 +10,10 @@ WriteBatch::WriteBatch(void)
 
 WriteBatch::!WriteBatch(void)
 {
-	if (write_batch != NULL)
+	if (write_batch != nullptr)
 	{
 		delete write_batch;
-		write_batch = NULL;
+		write_batch = nullptr;
 	}
 }
 

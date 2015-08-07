@@ -16,10 +16,10 @@ Iterator::~Iterator(void)
 
 Iterator::!Iterator(void)
 {
-	if (iter != NULL)
+	if (iter != nullptr)
 	{
 		delete iter;
-		iter = NULL;
+		iter = nullptr;
 	}
 }
 

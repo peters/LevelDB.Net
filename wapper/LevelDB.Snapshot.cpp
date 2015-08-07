@@ -15,9 +15,9 @@ Snapshot::~Snapshot(void)
 
 Snapshot::!Snapshot(void)
 {
-	if (snapshot != NULL)
+	if (snapshot != nullptr)
 	{
 		db->ReleaseSnapshot(snapshot);
-		snapshot = NULL;
+		snapshot = nullptr;
 	}
 }
