@@ -2,6 +2,7 @@
 
 #include "leveldb\db.h"
 #include "LevelDB.Iterator.h"
+#include "LevelDB.Options.h"
 #include "LevelDB.ReadOptions.h"
 #include "LevelDB.WriteBatch.h"
 #include "LevelDB.WriteOptions.h"
@@ -22,6 +23,7 @@ namespace LevelDB
 		Snapshot^ GetSnapshot();
 		Iterator^ NewIterator(ReadOptions^ options);
 		static DB^ Open(System::String^ name);
+		static DB^ Open(System::String^ name, Options^ options);
 		void Put(WriteOptions^ options, Slice key, Slice value);
 		bool TryGet(ReadOptions^ options, Slice key, [System::Runtime::InteropServices::Out] Slice% value);
 		void Write(WriteOptions^ options, WriteBatch^ write_batch);

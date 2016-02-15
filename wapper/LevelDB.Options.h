@@ -18,6 +18,7 @@ namespace LevelDB
 		size_t BlockSize;
 		int BlockRestartInterval;
 		CompressionType Compression;
+		bool ReuseLogs;
 		FilterPolicy^ FilterPolicy;
 	public:
 		Options(void);

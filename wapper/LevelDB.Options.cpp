@@ -18,6 +18,7 @@ leveldb::Options Options::ToUnmanaged()
 	options.block_size = BlockSize;
 	options.block_restart_interval = BlockRestartInterval;
 	options.compression = (leveldb::CompressionType)(int)Compression;
+	options.reuse_logs = ReuseLogs;
 	options.filter_policy = FilterPolicy == nullptr ? nullptr : FilterPolicy->policy;
 	return options;
 }

@@ -55,12 +55,15 @@ Iterator^ DB::NewIterator(ReadOptions^ options)
 	return gcnew Iterator(db_inner->NewIterator(options->ToUnmanaged()));
 }
 
-DB^ DB::Open(String^ name)
+DB^ DB::Open(String ^ name)
 {
-	leveldb::Options options;
-	options.create_if_missing = true;
+	return Open(name, gcnew Options());
+}
+
+DB^ DB::Open(String^ name, Options^ options)
+{
 	leveldb::DB* db_inner;
-	leveldb::Status status = leveldb::DB::Open(options, marshal_as<std::string>(name), &db_inner);
+	leveldb::Status status = leveldb::DB::Open(options->ToUnmanaged(), marshal_as<std::string>(name), &db_inner);
 	if (!status.ok())
 		throw gcnew LevelDBException(status);
 	return gcnew DB(db_inner);
